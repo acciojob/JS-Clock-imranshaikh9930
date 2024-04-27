@@ -1,24 +1,20 @@
-//your code here
+function setClock() {
+  const now = new Date();
+  const hour = now.getHours() % 12;
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
 
-function setClock(){
-	
+  const hourHand = document.querySelector('.hour-hand');
+  const minHand = document.querySelector('.min-hand');
+  const secHand = document.querySelector('.second-hand');
 
-const date = new Date();
-const hr = date.getHours() % 12;
-const mi = date.getMinutes();
-const se = date.getSeconds();
+  const hourRotation = (hour * 30) + (0.5 * minute); // 30 degrees per hour
+  const minRotation = (minute * 6) + (0.1 * second); // 6 degrees per minute
+  const secRotation = second * 6; // 6 degrees per second
 
-const hour = document.querySelector(".hour-hand");
-const min = document.querySelector(".min-hand");
-const sec = document.querySelector(".second-hand");
-
-const hourR = (hr * 30) + (0.5 * mi);
-const minR = (mi * 6) + (0.1 * se);
-const secR = se * 6;
-
-hour.style.transform = `rotate(${hourR}deg)`;
-hour.style.transform = `rotate(${minR}deg)`;
-hour.style.transform = `rotate(${secR}deg)`;
+  hourHand.style.transform = `rotate(${hourRotation}deg)`;
+  minHand.style.transform = `rotate(${minRotation}deg)`;
+  secHand.style.transform = `rotate(${secRotation}deg)`;
 }
 
-setInterval(setClock,1000)
+setInterval(setClock, 1000); // Update every second
